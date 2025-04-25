@@ -7,7 +7,14 @@ class UsersController < ApplicationController
   end
 
   # GET /users/1 or /users/1.json
-  def show; end
+  def show
+    @first_user_micropost = User.first.microposts.first
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @first_user_micropost }
+    end
+  end
 
   # GET /users/new
   def new
